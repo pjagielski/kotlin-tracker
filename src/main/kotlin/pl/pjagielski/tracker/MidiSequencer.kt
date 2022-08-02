@@ -3,6 +3,9 @@ package pl.pjagielski.tracker
 import kotlinx.coroutines.runBlocking
 import pl.pjagielski.tracker.player.Metronome
 import pl.pjagielski.tracker.player.MidiPlayer
+import java.io.File
+import java.io.FileWriter
+import java.lang.IllegalArgumentException
 import java.time.LocalDateTime
 import javax.sound.midi.MidiSystem
 
@@ -31,20 +34,11 @@ fun main() {
     val melody = sequence.toNotes().takeWhile { it.beat < beats }
     val metronome = Metronome(beatsPerBar = beats, bpm = 90)
 
-    val midiDeviceInfos = MidiSystem.getMidiDeviceInfo()
-
-    val device = midiDeviceInfos.toList()
-        .map { MidiSystem.getMidiDevice(it) }
-//        .first { it.deviceInfo.description.startsWith("CH345") }
-//        .first { it.deviceInfo.description.startsWith("Software MIDI Synthesizer") }
-        .first { it.deviceInfo.description.startsWith("VirMIDI") }
-
-    device.open()
-
-    val receiver = device.receiver
-//    val receiver = synthesiser.receiver
-
     runBlocking {
+//        val device = midiDevice("VirMIDI")
+//        val receiver = device.receiver
+        val receiver = synthesiser.receiver
+
         val player = MidiPlayer(receiver, melody, metronome, this)
 //        player.playNotes(LocalDateTime.now())
         player.playBar(1, LocalDateTime.now())
@@ -53,9 +47,14 @@ fun main() {
             println("Stopping player...")
             runBlocking {
                 player.stop()
+//                device.close()
             }
         })
     }
-
 }
 
+private fun midiDevice(desc: String) =
+    MidiSystem.getMidiDeviceInfo().toList()
+        .map { MidiSystem.getMidiDevice(it) }
+        .first { it.deviceInfo.description.startsWith(desc) }
+        .apply { open() }
