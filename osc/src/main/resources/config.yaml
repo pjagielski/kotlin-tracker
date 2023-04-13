@@ -1,9 +1,8 @@
 configuration:
   track:
-    bpm: 100
+    bpm: 129
     beatsPerBar: 16
   locations:
     liveFile: osc/src/main/resources/kts/still.kts
-#    liveFile: osc/src/main/resources/kts/still_house.kts
     samples: sounds/samples
     loops: sounds/loops

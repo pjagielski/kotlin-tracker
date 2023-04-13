@@ -1,0 +1,9 @@
+live.kts
+build
+out
+work
+.idea
+.gradle
+.vscode
+src/test/kotlin/*.kts
+src/test/resources/config.yaml
