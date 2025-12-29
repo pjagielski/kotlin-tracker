@@ -14,6 +14,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-scripting-dependencies:$kotlinVersion")
     implementation("io.github.microutils:kotlin-logging:3.0.4")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
     implementation("ch.qos.logback:logback-classic:1.3.5")
 }

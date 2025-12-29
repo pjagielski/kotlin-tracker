@@ -13,6 +13,8 @@ dependencies {
         // from http4k
         exclude("org.slf4j", "slf4j-api")
         exclude("org.slf4j", "slf4j-log4j12")
+        exclude("com.oracle.xml", "xmlparserv2")
     }
-    implementation("ch.qos.logback:logback-classic:1.3.5")
+    implementation("ch.qos.logback:logback-classic:1.5.13")
+    implementation("xerces:xercesImpl:2.12.2")
 }

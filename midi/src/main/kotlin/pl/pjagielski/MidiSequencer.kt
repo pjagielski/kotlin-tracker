@@ -2,12 +2,10 @@ package pl.pjagielski
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import pl.pjagielski.helper.toNotes
 import pl.pjagielski.helper.toNotesPreservingDuration
 import pl.pjagielski.player.Metronome
 import pl.pjagielski.player.MidiPlayer
 import pl.pjagielski.player.Note
-import java.time.LocalDateTime
 import javax.sound.midi.MidiDevice
 import javax.sound.midi.MidiSystem
 
@@ -48,10 +46,10 @@ fun main() {
     val metronome = Metronome(beatsPerBar = beats, bpm = bpm)
 
     runBlocking(Dispatchers.IO) {
-//        val device: MidiDevice? = null
-        val device = midiDevice("VirMIDI")
-        val receiver = device.receiver
-//        val receiver = synthesiser.receiver
+        val device: MidiDevice? = null
+//        val device = midiDevice("VirMIDI")
+//        val receiver = device.receiver
+        val receiver = synthesiser.receiver
 
         val player = MidiPlayer(receiver, melody, metronome, this)
         player.start()
